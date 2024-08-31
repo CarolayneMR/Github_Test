@@ -1,7 +1,7 @@
 # Github Test
 Testes feitos com a extensão Playwright no VSCode, para Atividade Avaliatória de Testes.
 
-#Testes feito por: 
+# Testes feito por: 
 * [Carolayne Maria Russel](https://github.com/CarolayneMR)
 * [Ian Elton](https://github.com/ianq1w1)
 
