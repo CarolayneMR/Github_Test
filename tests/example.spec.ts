@@ -1,18 +1,53 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+//TESTES FEITOS NA PAGINA PRINCIAPAL DO GITHUB.
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+test('sign in', async ({ page }) => { //Teste para clicar no botão de sign in
+   await page.goto('https://github.com/');
+   await page.getByRole('link', { name: 'Sign in' }).click();
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('sign up', async ({ page }) => { //Teste para clicar no botão de sign up
+   await page.goto('https://github.com/');
+   await page.getByRole('link', { name: 'Sign up' }).click();
+});
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+test('free enterprise', async ({ page }) => { //Teste para clicar no botão de free enterprise
+   await page.goto('https://github.com/');
+   await page.getByRole('link', { name: 'Start a free enterprise trial' }).first().click();
+});
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+test('sign up for github button', async ({ page }) => { //Teste para clicar no botão de sign up for github
+   await page.goto('https://github.com/');
+   await page.getByRole('button', { name: 'Sign up for GitHub' }).first().click();
+});
+
+test('github actions', async ({ page }) => { //Teste para clicar no botão de github actions
+   await page.goto('https://github.com/');
+   await page.getByRole('link', { name: 'Discover GitHub Actions' }).click();
+});
+
+test('github mobile', async ({ page }) => { //Teste para clicar no botão de github mobile
+   await page.goto('https://github.com/');
+   await page.getByRole('link', { name: 'Download GitHub Mobile' }).click();
+});
+
+test('discussions github', async ({ page }) => { //Teste para clicar no botão de discussions github
+   await page.goto('https://github.com/');
+   await page.getByRole('link', { name: 'Jump into GitHub Discussions' }).click();
+});
+
+test('pull requests', async ({ page }) => { //Teste para clicar no botão de pull requests
+   await page.goto('https://github.com/');
+   await page.getByRole('link', { name: 'Check out pull requests' }).click();
+});
+
+test('footer email', async ({ page }) => { //Teste para clicar no botão de footer email
+   await page.goto('https://github.com/');
+   await page.locator('#footer_user_email').click();
+});
+
+test('trusted', async ({ page }) => { //Teste para clicar no botão de trusted
+   await page.goto('https://github.com/');
+   await page.getByText('Trusted by the world’s').click();
 });
