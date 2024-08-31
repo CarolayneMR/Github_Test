@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 
-//TESTES FEITOS NA PAGINA PRINCIAPAL DO GITHUB.
+//TESTES FEITOS NA PAGINA PRINCIPAL DO GITHUB.
 
 test('sign in', async ({ page }) => { //Teste para clicar no botão de sign in
    await page.goto('https://github.com/');
