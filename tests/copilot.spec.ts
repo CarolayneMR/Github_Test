@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 //TESTES NAS PAGINAS DO GITHUB COPILOT.
 
-//1
+//1. 
 test('Entrar na pagina copilot', async ({ page }) => {
   await page.goto('https://github.com/');
   await page.getByRole('link', { name: 'Explore GitHub Copilot' }).click();
