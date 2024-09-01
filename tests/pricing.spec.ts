@@ -1,53 +1,77 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 //TESTES FEITOS NA PAGINA DE PREÇO DO GITHUB.
 
-test('get the complete', async ({ page }) => { //Teste para clicar no botão de get the complete
+//1.
+test('get the complete', async ({ page }) => { 
   await page.goto('https://github.com/pricing?ref_loc=search'); 
   await page.getByRole('heading', { name: 'Get the complete developer' }).click();
+  await expect(page).toHaveTitle(/Pricing · Plans for every developer/);
 });
 
-test('join for free', async ({ page }) => { //Teste para clicar no botão de join for free
+//2.
+test('join for free', async ({ page }) => { 
  await page.goto('https://github.com/pricing?ref_loc=search'); 
  await page.getByRole('link', { name: 'Join for free' }).first().click();
+ await expect(page).toHaveURL('https://github.com/signup');
 });
 
-test('continue with team', async ({ page }) => { //Teste para clicar no botão de continue with team
+//3.
+test('continue with team', async ({ page }) => { 
  await page.goto('https://github.com/pricing?ref_loc=search'); 
  await page.getByRole('link', { name: 'Continue with Team' }).first().click();
+ await expect(page).toHaveURL('https://github.com/signup?return_to=%2Faccount%2Forganizations%2Fnew%3Fplan%3Dbusiness%26plan_duration%3Dyear');
 });
 
-test('start a free trial', async ({ page }) => { //Teste para clicar no botão de start a free trial
+//4.
+test('start a free trial', async ({ page }) => {
  await page.goto('https://github.com/pricing?ref_loc=search'); 
  await page.getByRole('link', { name: 'Start a free trial' }).first().click();
+ await expect(page).toHaveURL('https://github.com/organizations/enterprise_plan?ref_cta=Start%2520a%2520free%2520trial&ref_loc=card&ref_page=pricing');
 });
 
-test('compare all features', async ({ page }) => { //Teste para clicar no botão de compare all features
+//5.
+test('compare all features', async ({ page }) => { 
  await page.goto('https://github.com/pricing?ref_loc=search');
  await page.getByRole('link', { name: 'Compare all features' }).click();
+ await expect(page).toHaveURL('https://github.com/pricing?ref_loc=search#compare-features');
 });  
- 
-test('read the case study', async ({ page }) => { //Teste para clicar no botão de read the case study
- await page.goto('https://github.com/pricing?ref_loc=search');
- await page.getByRole('link', { name: 'Read the case study' }).click();
+
+//6.
+test('read the case study', async ({ page }) => { 
+  await page.goto('https://github.com/pricing?ref_loc=search');
+  await page.getByRole('tab', { name: 'Trustpilot' }).click();
+  await page.getByRole('link', { name: 'Read the case study' }).click();
+  await expect(page).toHaveURL('https://github.com/customer-stories/trustpilot');
 });
 
-test('code workflow', async ({ page }) => { //Teste para clicar no botão de code workflow
+//7.
+test('code workflow', async ({ page }) => { 
  await page.goto('https://github.com/pricing?ref_loc=search');
  await page.getByRole('heading', { name: 'Code workflow' }).click();
+ await expect(page.getByRole('heading', { name: 'Code workflow' })).toBeVisible();
 });  
  
-test('github copilot', async ({ page }) => { //Teste para clicar no botão de github copilot
+//8.
+test('verificando o acordeão de texto', async ({ page }) => { 
  await page.goto('https://github.com/pricing?ref_loc=search');
- await page.getByRole('link', { name: 'GitHub Copilot Starting at $' }).click();
+ await page.locator('summary').filter({ hasText: 'How do I view and manage my' }).click();
+ await page.getByText('You can view your account\'s').click();
+ await expect(page.getByText('You can view your account\'s')).toBeVisible();
 });
 
-test('codespaces', async ({ page }) => { //Teste para clicar no botão de codespaces
+//9.
+test('codespaces', async ({ page }) => { 
  await page.goto('https://github.com/pricing?ref_loc=search');  
  await page.getByRole('link', { name: 'Codespaces Starting at $0.18' }).click();
+ await expect(page).toHaveURL('https://github.com/features/codespaces');
 });
 
-test('large file', async ({ page }) => { //Teste para clicar no botão de large file
+//10.
+test('verificando texto do spotify', async ({ page }) => { 
   await page.goto('https://github.com/pricing?ref_loc=search');  
-  await page.getByRole('link', { name: 'Large File Storage $5 per' }).click();
+  await page.getByRole('tab', { name: 'Spotify' }).click();
+  await page.getByText('“People know what a pull').click();
+  await page.getByText('— Laurent Ploix, Product').click();
+  await expect(page.getByText('— Laurent Ploix, Product')).toBeVisible();
 });
